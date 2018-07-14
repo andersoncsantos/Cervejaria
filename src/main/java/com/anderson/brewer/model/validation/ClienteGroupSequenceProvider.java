@@ -1,4 +1,4 @@
-package com.anderson.brewer.validation;
+package com.anderson.brewer.model.validation;
 
 import java.util.ArrayList;
 import java.util.List;

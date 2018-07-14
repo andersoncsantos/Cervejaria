@@ -22,9 +22,9 @@ import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 import org.hibernate.validator.group.GroupSequenceProvider;
 
+import com.anderson.brewer.model.validation.ClienteGroupSequenceProvider;
 import com.anderson.brewer.model.validation.group.CnpjGroup;
 import com.anderson.brewer.model.validation.group.CpfGroup;
-import com.anderson.brewer.validation.ClienteGroupSequenceProvider;
 
 @Entity
 @Table(name = "cliente")
