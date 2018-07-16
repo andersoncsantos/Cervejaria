@@ -127,6 +127,10 @@ public class Usuario implements Serializable {
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		return result;
 	}
+	
+	public boolean isNovo(){
+		return codigo == null;
+	}
 
 	@Override
 	public boolean equals(Object obj) {

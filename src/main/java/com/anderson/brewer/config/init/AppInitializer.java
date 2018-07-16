@@ -3,6 +3,7 @@ package com.anderson.brewer.config.init;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.anderson.brewer.config.JPAConfig;
+import com.anderson.brewer.config.SecurityConfig;
 import com.anderson.brewer.config.ServiceConfig;
 import com.anderson.brewer.config.WebConfig;
 import javax.servlet.ServletRegistration.Dynamic;
@@ -12,17 +13,17 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[]{JPAConfig.class, ServiceConfig.class};
+		return new Class<?>[]{JPAConfig.class, ServiceConfig.class, SecurityConfig.class};
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class<?>[]{WebConfig.class}; /*Configura o spring web para encontrar os controllers*/
+		return new Class<?>[]{WebConfig.class};
 	}
 
 	@Override
 	protected String[] getServletMappings() {
-		return new String [] { "/" }; /* Padrão de URL/Requisições web --> Front Controller*/
+		return new String [] { "/" };
 	}
 	
 	@Override

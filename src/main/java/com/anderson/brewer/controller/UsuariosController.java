@@ -14,6 +14,7 @@ import com.anderson.brewer.model.Usuario;
 import com.anderson.brewer.repository.Grupos;
 import com.anderson.brewer.service.CadastroUsuarioService;
 import com.anderson.brewer.service.exception.EmailUsuarioJaCadastradoException;
+import com.anderson.brewer.service.exception.SenhaObrigatoriaUsuarioException;
 
 @Controller
 @RequestMapping("/usuarios")
@@ -42,6 +43,9 @@ public class UsuariosController {
 			cadastroUsuarioService.salvar(usuario);
 		} catch (EmailUsuarioJaCadastradoException e) {
 			result.rejectValue("email", e.getMessage(), e.getMessage());
+			return novo(usuario);
+		} catch (SenhaObrigatoriaUsuarioException e){
+			result.rejectValue("senha", e.getMessage(), e.getMessage());
 			return novo(usuario);
 		}
 		
