@@ -119,6 +119,10 @@ public class Usuario implements Serializable {
 	public void setConfirmacaoSenha(String confirmacaoSenha) {
 		this.confirmacaoSenha = confirmacaoSenha;
 	}
+	
+	public boolean isNovo(){
+		return codigo == null;
+	}
 
 	@Override
 	public int hashCode() {
@@ -128,10 +132,6 @@ public class Usuario implements Serializable {
 		return result;
 	}
 	
-	public boolean isNovo(){
-		return codigo == null;
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

@@ -9,3 +9,9 @@ public class SenhaObrigatoriaUsuarioException extends RuntimeException {
 	}
 
 }
+
+
+
+
+
+
