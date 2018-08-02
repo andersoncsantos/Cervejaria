@@ -1,13 +1,15 @@
 package com.anderson.brewer.config.init;
 
+import javax.servlet.Filter;
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration.Dynamic;
+
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.anderson.brewer.config.JPAConfig;
 import com.anderson.brewer.config.SecurityConfig;
 import com.anderson.brewer.config.ServiceConfig;
 import com.anderson.brewer.config.WebConfig;
-import javax.servlet.ServletRegistration.Dynamic;
-import javax.servlet.MultipartConfigElement;
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
@@ -25,6 +27,12 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	protected String[] getServletMappings() {
 		return new String [] { "/" };
 	}
+	
+	@Override
+	protected Filter[] getServletFilters() {
+        return new Filter[] { };
+	}
+
 	
 	@Override
 	protected void customizeRegistration(Dynamic registration) {
