@@ -39,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/cidades/nova").hasAuthority("CADASTRAR_CIDADE")
 			.antMatchers("/usuarios/**").hasAuthority("CADASTRAR_USUARIO")
 			.anyRequest().authenticated()
+//			.anyRequest().denyAll()
 			.and()
 		.formLogin()
 			.loginPage("/login")
