@@ -67,3 +67,9 @@ public class UsuarioGrupoId implements Serializable {
 	}
 	
 }
+
+
+
+
+
+

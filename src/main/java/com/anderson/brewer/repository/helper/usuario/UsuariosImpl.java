@@ -34,7 +34,7 @@ public class UsuariosImpl implements UsuariosQueries {
 		return manager
 				.createQuery("from Usuario where lower(email) = lower(:email) and ativo = true", Usuario.class)
 				.setParameter("email", email).getResultList().stream().findFirst();
-	}
+	}	
 
 	@Override
 	public List<String> permissoes(Usuario usuario) {
@@ -49,6 +49,7 @@ public class UsuariosImpl implements UsuariosQueries {
 	@Override
 	public List<Usuario> filtrar(UsuarioFilter filtro) {
 		Criteria criteria = manager.unwrap(Session.class).createCriteria(Usuario.class);
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		adicionarFiltro(filtro, criteria);
 		return criteria.list();
 	}
@@ -70,7 +71,6 @@ public class UsuariosImpl implements UsuariosQueries {
 					DetachedCriteria dc = DetachedCriteria.forClass(UsuarioGrupo.class);
 					dc.add(Restrictions.eq("id.grupo.codigo", codigoGrupo));
 					dc.setProjection(Projections.property("id.usuario"));
-					
 					subqueries.add(Subqueries.propertyIn("codigo", dc));
 				}
 				
@@ -78,10 +78,7 @@ public class UsuariosImpl implements UsuariosQueries {
 				criteria.add(Restrictions.and(subqueries.toArray(criterions)));
 			}
 		}
-
-		
 	}
-	
 }
 
 
