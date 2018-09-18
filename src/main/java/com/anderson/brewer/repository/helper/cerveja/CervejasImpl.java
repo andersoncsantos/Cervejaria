@@ -33,9 +33,7 @@ public class CervejasImpl implements CervejasQueries {
 	@Transactional(readOnly = true)
 	public Page<Cerveja> filtrar(CervejaFilter filtro, Pageable pageable) {
 		Criteria criteria = manager.unwrap(Session.class).createCriteria(Cerveja.class);
-		
 		paginacaoUtil.preparar(criteria, pageable);
-		
 		adicionarFiltro(filtro, criteria);
 		
 		return new PageImpl<>(criteria.list(), pageable, total(filtro));
