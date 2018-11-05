@@ -1,21 +1,26 @@
 package com.anderson.brewer.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.anderson.brewer.controller.page.PageWrapper;
+import com.anderson.brewer.dto.CervejaDTO;
 import com.anderson.brewer.model.Cerveja;
 import com.anderson.brewer.model.Origem;
 import com.anderson.brewer.model.Sabor;
@@ -74,8 +79,15 @@ public class CervejasController {
 		
 		PageWrapper<Cerveja> paginaWrapper = new PageWrapper<>(cervejas.filtrar(cervejaFilter, pageable), httpServletRequest);
 		mv.addObject("pagina", paginaWrapper);
-	return mv;
+	
+		return mv;
 	}
+	
+	@RequestMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<CervejaDTO> pesquisar(String skuOuNome) {
+		return cervejas.porSkuOuNome(skuOuNome);
+	}
+
 }
 
 
